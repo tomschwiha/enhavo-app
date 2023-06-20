@@ -1,0 +1,74 @@
+services:
+    '@enhavo/app/Modal/ModalManager':
+        chunk: 'modal'
+        arguments:
+            - 'param:data.modals'
+            - '@enhavo/app/Modal/ModalRegistry'
+            - '@enhavo/app/Vue/VueRegistry'
+
+    '@enhavo/app/Modal/ModalRegistry':
+        chunk: 'modal'
+
+    modal.iframe:
+        chunk: 'modal'
+        from: '@enhavo/core/RegistryEntry'
+        arguments:
+            - 'string:iframe-modal'
+            - '@enhavo/app/Modal/Components/IframeModalComponent.vue'
+            - '@enhavo/app/Modal/Factory/IframeModalFactory'
+        tags:
+            - 'enhavo_app.modal'
+
+    modal.ajax-form:
+        chunk: 'modal'
+        from: '@enhavo/core/RegistryEntry'
+        arguments:
+            - 'string:ajax-form-modal'
+            - '@enhavo/app/Modal/Components/AjaxFormModalComponent.vue'
+            - '@enhavo/app/Modal/Factory/AjaxFormModalFactory'
+        tags:
+            - 'enhavo_app.modal'
+
+    modal.output-stream:
+        chunk: 'modal'
+        from: '@enhavo/core/RegistryEntry'
+        arguments:
+            - 'string:output-stream'
+            - '@enhavo/app/Modal/Components/OutputStreamModalComponent.vue'
+            - '@enhavo/app/Modal/Factory/OutputStreamModalFactory'
+        tags:
+            - 'enhavo_app.modal'
+
+    '@enhavo/app/Modal/Factory/IframeModalFactory':
+        chunk: 'modal'
+        arguments:
+            - '@enhavo/app/Modal/ModalManager'
+
+    '@enhavo/app/Modal/Factory/AjaxFormModalFactory':
+        chunk: 'modal'
+        arguments:
+            - '@enhavo/app/Modal/ModalManager'
+            - '@enhavo/core/Router'
+
+    '@enhavo/app/Modal/Factory/OutputStreamModalFactory':
+        chunk: 'modal'
+        arguments:
+            - '@enhavo/app/Modal/ModalManager'
+
+    '@enhavo/app/Modal/Components/IframeModalComponent.vue':
+        chunk: 'modal'
+        static: true
+
+    '@enhavo/app/Modal/Components/AjaxFormModalComponent.vue':
+        chunk: 'modal'
+        static: true
+
+    '@enhavo/app/Modal/Components/OutputStreamModalComponent.vue':
+        chunk: 'modal'
+        static: true
+
+    '@enhavo/app/Modal/Components/ModalComponent.vue':
+        chunk: 'vue'
+        static: true
+        tags:
+            - { name: vue.component, component: 'modal-component' }

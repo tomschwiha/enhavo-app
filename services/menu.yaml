@@ -1,0 +1,83 @@
+services:
+    '@enhavo/app/Menu/MenuManager':
+        chunk: 'main'
+        arguments:
+            - 'param:data.menu'
+            - '@enhavo/app/Menu/MenuRegistry'
+            - '@enhavo/app/ViewStack/GlobalDataStorageManager'
+            - '@enhavo/app/Vue/VueRegistry'
+
+    '@enhavo/app/Menu/MenuRegistry':
+
+    menu.menu-item:
+        chunk: 'main'
+        from: '@enhavo/core/RegistryEntry'
+        arguments:
+            - 'string:menu-item'
+            - '@enhavo/app/Menu/Components/MenuItemComponent.vue'
+            - '@enhavo/app/Menu/Factory/MenuItemFactory'
+        tags:
+            - 'enhavo_app.menu'
+
+    '@enhavo/app/Menu/Factory/MenuItemFactory':
+        chunk: 'main'
+        arguments:
+            - '@enhavo/app/ViewStack/EventDispatcher'
+            - '@enhavo/app/Menu/MenuManager'
+
+    '@enhavo/app/Menu/Components/MenuItemComponent.vue':
+        chunk: 'main'
+        static: true
+
+    menu.menu-list:
+        chunk: 'main'
+        from: '@enhavo/core/RegistryEntry'
+        arguments:
+            - 'string:menu-list'
+            - '@enhavo/app/Menu/Components/MenuListComponent.vue'
+            - '@enhavo/app/Menu/Factory/MenuListFactory'
+        tags:
+            - 'enhavo_app.menu'
+
+    '@enhavo/app/Menu/Factory/MenuListFactory':
+        chunk: 'main'
+        arguments:
+            - '@enhavo/app/ViewStack/EventDispatcher'
+            - '@enhavo/app/Menu/MenuManager'
+            - '@enhavo/app/Menu/MenuRegistry'
+
+    '@enhavo/app/Menu/Components/MenuListComponent.vue':
+        chunk: 'main'
+        static: true
+
+    menu.menu-dropdown:
+        chunk: 'main'
+        from: '@enhavo/core/RegistryEntry'
+        arguments:
+            - 'string:menu-dropdown'
+            - '@enhavo/app/Menu/Components/MenuDropdownComponent.vue'
+            - '@enhavo/app/Menu/Factory/MenuDropdownFactory'
+        tags:
+            - 'enhavo_app.menu'
+
+    '@enhavo/app/Menu/Factory/MenuDropdownFactory':
+        chunk: 'main'
+        arguments:
+            - '@enhavo/app/ViewStack/EventDispatcher'
+            - '@enhavo/app/Menu/MenuManager'
+
+    '@enhavo/app/Menu/Components/MenuDropdownComponent.vue':
+        chunk: 'main'
+        static: true
+
+    '@enhavo/app/Menu/Components/MenuNotificationComponent.vue':
+        chunk: 'vue'
+        static: true
+        tags:
+            - { name: vue.component, component: 'menu-notification' }
+
+    '@enhavo/app/Menu/Components/Menu.vue':
+        chunk: 'vue'
+        static: true
+        tags:
+            - { name: vue.component, component: 'app-menu' }

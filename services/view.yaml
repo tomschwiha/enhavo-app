@@ -1,0 +1,43 @@
+services:
+    '@enhavo/app/View/View':
+        chunk: 'view'
+        arguments:
+            - 'param:data.view'
+            - '@enhavo/core/Router'
+            - '@enhavo/core/Translator'
+            - '@enhavo/app/Vue/VueRegistry'
+        calls:
+            - [setEventDispatcher, ['@enhavo/app/ViewStack/EventDispatcher']]
+
+    '@enhavo/app/View/DataLoader[data]':
+        chunk: 'view'
+        init: true
+        from: '@enhavo/app/View/DataLoader'
+        arguments:
+            - 'string:data'
+            - 'string:data'
+            - 'container:'
+
+    '@enhavo/app/View/DataLoader[routes]':
+        chunk: 'view'
+        init: true
+        from: '@enhavo/app/View/DataLoader'
+        arguments:
+            - 'string:routes'
+            - 'string:routes'
+            - 'container:'
+
+    '@enhavo/app/View/DataLoader[translations]':
+        chunk: 'view'
+        init: true
+        from: '@enhavo/app/View/DataLoader'
+        arguments:
+            - 'string:translations'
+            - 'string:translations'
+            - 'container:'
+
+    '@enhavo/app/View/Components/ViewComponent':
+        chunk: 'vue'
+        static: true
+        tags:
+            - { name: vue.component, component: 'view-view' }

@@ -1,0 +1,70 @@
+services:
+    '@enhavo/app/Toolbar/Widget/WidgetManager':
+        chunk: 'main'
+        arguments:
+            - 'param:data.toolbar.primaryWidgets'
+            - 'param:data.toolbar.secondaryWidgets'
+            - '@enhavo/app/Toolbar/Widget/WidgetRegistry'
+            - '@enhavo/app/Vue/VueRegistry'
+
+    '@enhavo/app/Toolbar/Widget/WidgetRegistry':
+        chunk: 'main'
+
+    toolbar.icon-widget:
+        chunk: 'main'
+        from: '@enhavo/core/RegistryEntry'
+        arguments:
+            - 'string:icon-widget'
+            - '@enhavo/app/Toolbar/Widget/Components/IconWidgetComponent.vue'
+            - '@enhavo/app/Toolbar/Widget/Factory/IconWidgetFactory'
+        tags:
+            - 'enhavo_app.toolbar'
+
+    '@enhavo/app/Toolbar/Widget/Factory/IconWidgetFactory':
+        chunk: 'main'
+        arguments:
+            - '@enhavo/app/ViewStack/EventDispatcher'
+            - '@enhavo/app/Menu/MenuManager'
+
+    '@enhavo/app/Toolbar/Widget/Components/IconWidgetComponent.vue':
+        chunk: 'main'
+        static: true
+
+    toolbar.quick-menu-widget:
+        chunk: 'main'
+        from: '@enhavo/core/RegistryEntry'
+        arguments:
+            - 'string:quick-menu-widget'
+            - '@enhavo/app/Toolbar/Widget/Components/QuickMenuWidgetComponent.vue'
+            - '@enhavo/app/Toolbar/Widget/Factory/QuickMenuWidgetFactory'
+        tags:
+            - 'enhavo_app.toolbar'
+
+    '@enhavo/app/Toolbar/Widget/Factory/QuickMenuWidgetFactory':
+        chunk: 'main'
+        arguments:
+            - '@enhavo/app/ViewStack/EventDispatcher'
+            - '@enhavo/app/Menu/MenuManager'
+
+    '@enhavo/app/Toolbar/Widget/Components/QuickMenuWidgetComponent.vue':
+        chunk: 'main'
+        static: true
+
+    toolbar.new-window-widget:
+        chunk: 'main'
+        from: '@enhavo/core/RegistryEntry'
+        arguments:
+            - 'string:new-window-widget'
+            - '@enhavo/app/Toolbar/Widget/Components/IconWidgetComponent.vue'
+            - '@enhavo/app/Toolbar/Widget/Factory/NewWindowWidgetFactory'
+        tags:
+            - 'enhavo_app.toolbar'
+
+    '@enhavo/app/Toolbar/Widget/Factory/NewWindowWidgetFactory':
+        chunk: 'main'
+
+    '@enhavo/app/Toolbar/Components/Toolbar.vue':
+        chunk: 'vue'
+        static: true
+        tags:
+            - { name: vue.component, component: 'toolbar' }
