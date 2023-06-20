@@ -9,9 +9,9 @@
     "url": "https://github.com/tomschwiha/enhavo.git"
   },
   "dependencies": {
-    "@enhavo/core": "git+https://github.com/tomschwiha/enhavo.git",
-    "@enhavo/dependency-injection": "git+https://github.com/tomschwiha/enhavo.git",
-    "@enhavo/font": "git+https://github.com/tomschwiha/enhavo.git",
+    "@enhavo/core": "git+https://github.com/tomschwiha/enhavo-core.git",
+    "@enhavo/dependency-injection": "git+https://github.com/tomschwiha/enhavo-dependency-injection.git",
+    "@enhavo/font": "git+https://github.com/tomschwiha/enhavo-font.git",
     "@ibm/plex": "^1.2.3",
     "ansi-to-html": "^0.6.11",
     "async": "^2.6.2",
